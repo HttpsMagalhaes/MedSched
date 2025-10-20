@@ -1,2 +1,2 @@
 # MedSched
-Plataforma de gerenciar e agendar consultas médias online.
+Projeto para agendar e gerenciar consultas médicas online.

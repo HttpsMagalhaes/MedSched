@@ -1,0 +1,290 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Tempo de geração: 09/08/2023 às 17:14
+-- Versão do servidor: 10.5.20-MariaDB
+-- Versão do PHP: 7.3.33
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `software`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `business`
+--
+
+CREATE TABLE `business` (
+  `idBusiness` int(11) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Password` char(8) NOT NULL,
+  `City` varchar(45) NOT NULL,
+  `NBHD` varchar(45) NOT NULL,
+  `Street` varchar(45) NOT NULL,
+  `Number` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `business`
+--
+
+INSERT INTO `business` (`idBusiness`, `Name`, `Email`, `Password`, `City`, `NBHD`, `Street`, `Number`) VALUES
+(1, 'Doce vida', 'docevida@gmail.com', 'docevida', 'Muzambinho', 'Centro', 'Rua Tiradentes', 134),
+(3, 'Saude infinita', 'saudeinfinita@gmail.com', 'saude', 'Muzambinho', 'Centro', 'Rua Sete Setembro', 45);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `contact`
+--
+
+CREATE TABLE `contact` (
+  `idContact` int(11) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Topic` varchar(45) NOT NULL,
+  `Message` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `contact`
+--
+
+INSERT INTO `contact` (`idContact`, `Email`, `Topic`, `Message`) VALUES
+(1, 'joana@gmail', 'oii', 'aaaaaaa');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `contact_speciality`
+--
+
+CREATE TABLE `contact_speciality` (
+  `idContact_speciality` int(11) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Subject` varchar(45) NOT NULL,
+  `Description` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `contact_speciality`
+--
+
+INSERT INTO `contact_speciality` (`idContact_speciality`, `Email`, `Subject`, `Description`) VALUES
+(1, 'joana@gmail', 'ergeq', 'erb a');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `medical_insurance`
+--
+
+CREATE TABLE `medical_insurance` (
+  `idMedical_insurance` int(11) NOT NULL,
+  `Name` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `medical_insurance`
+--
+
+INSERT INTO `medical_insurance` (`idMedical_insurance`, `Name`) VALUES
+(1, 'Unimed'),
+(2, 'Sus'),
+(3, 'Santa Casa'),
+(4, 'Particular');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `patient`
+--
+
+CREATE TABLE `patient` (
+  `idPatient` int(11) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Birth` date NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Password` char(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `patient`
+--
+
+INSERT INTO `patient` (`idPatient`, `Name`, `Birth`, `Email`, `Password`) VALUES
+(1, 'Felipe Antony', '2006-02-23', 'felipeantony@gmail.com', 'felipe'),
+(3, 'Rafaela Magalhães', '2006-01-06', 'rafaelamagalhaes@gmail.com', 'rafaela'),
+(4, 'Rafaela Magalhães', '2006-01-06', 'rafaelamagalhaes@gmail.com', 'rafaela');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `professional`
+--
+
+CREATE TABLE `professional` (
+  `idProfessional` int(11) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Birth` date NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Password` char(8) NOT NULL,
+  `Specialty` varchar(45) NOT NULL,
+  `Telephone` char(15) NOT NULL,
+  `Registry` int(11) NOT NULL,
+  `City` varchar(45) NOT NULL,
+  `UniversityDegree` varchar(45) NOT NULL,
+  `idBusiness` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `professional`
+--
+
+INSERT INTO `professional` (`idProfessional`, `Name`, `Birth`, `Email`, `Password`, `Specialty`, `Telephone`, `Registry`, `City`, `UniversityDegree`, `idBusiness`) VALUES
+(1, 'Fabiola Oliveira', '1978-12-12', 'fabiolaoliveira@gmail.com', 'fabiola', 'Nutricionista', '35 999998888', 1234, 'Muzambinho', '', 1),
+(3, 'Marcos Silva', '1972-09-26', 'marcossilva@gmail.com', 'marcos', 'Nutricionista', '35 999998877', 3456, 'Guaxupé', '', 3),
+(5, 'Julia Avelar', '1990-12-01', 'juliaavelar@gmail.com', 'julia', 'Ginecologista', '35 999996666', 8900, 'Muzambinho', '', 3),
+(7, 'Matheus Henrique', '1992-09-07', 'matheushenrique@gmail.com', 'matheus', 'Ginecologista', '35 999996633', 6754, 'Muzambinho', '', 1),
+(9, 'José Soares', '1212-12-12', 'soares@gmail.com', 'jose', 'Oftamologista', '(35) 97755-4466', 6785, 'Guaxupe', '', 1),
+(10, 'Wanessa Santos', '1212-12-09', 'wanessasantos@gmail.com', 'wanessa', 'Oftamologista', '(35) 97755-4433', 555, 'Muzambinho', '', 1),
+(11, 'Carla Mendes', '1934-11-22', 'carlamendes@gmail.com', 'carla', 'Geral', '(35) 99955-4433', 6755, 'Muzambinho', 'geral.pdf', 2),
+(12, 'Camila Alves', '1555-12-12', 'camilaalves@gmail.com', 'camila', 'Geral', '(35) 97755-9433', 90, 'Bom Jesus', 'geral.pdf', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `query`
+--
+
+CREATE TABLE `query` (
+  `idQuery` int(11) NOT NULL,
+  `Name_patient` varchar(45) NOT NULL,
+  `Date` date NOT NULL,
+  `Hours` time NOT NULL,
+  `Telephone_patient` char(15) DEFAULT NULL,
+  `idMedical_insurance` int(11) NOT NULL,
+  `idProfessional` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `query`
+--
+
+INSERT INTO `query` (`idQuery`, `Name_patient`, `Date`, `Hours`, `Telephone_patient`, `idMedical_insurance`, `idProfessional`) VALUES
+(1, 'Felipe Antony', '2023-09-09', '13:00:00', '35 999009296', 3, 3),
+(2, 'Felipe Antony', '2023-08-26', '15:44:00', '35 999009296', 3, 7),
+(3, 'Joana Dourado', '2023-08-14', '09:00:00', '35 999007890', 1, 7),
+(4, 'Anna Carolina', '2023-08-05', '12:00:00', '35 999007887', 4, 1),
+(5, 'Larissa Souza', '2023-08-23', '15:00:00', '35 987609296', 2, 3),
+(6, 'Davi Cardoso', '2023-08-09', '19:00:00', '35 9990123890', 3, 5);
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `business`
+--
+ALTER TABLE `business`
+  ADD PRIMARY KEY (`idBusiness`);
+
+--
+-- Índices de tabela `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`idContact`);
+
+--
+-- Índices de tabela `contact_speciality`
+--
+ALTER TABLE `contact_speciality`
+  ADD PRIMARY KEY (`idContact_speciality`);
+
+--
+-- Índices de tabela `medical_insurance`
+--
+ALTER TABLE `medical_insurance`
+  ADD PRIMARY KEY (`idMedical_insurance`);
+
+--
+-- Índices de tabela `patient`
+--
+ALTER TABLE `patient`
+  ADD PRIMARY KEY (`idPatient`);
+
+--
+-- Índices de tabela `professional`
+--
+ALTER TABLE `professional`
+  ADD PRIMARY KEY (`idProfessional`,`idBusiness`);
+
+--
+-- Índices de tabela `query`
+--
+ALTER TABLE `query`
+  ADD PRIMARY KEY (`idQuery`,`idMedical_insurance`,`idProfessional`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `business`
+--
+ALTER TABLE `business`
+  MODIFY `idBusiness` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `idContact` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `contact_speciality`
+--
+ALTER TABLE `contact_speciality`
+  MODIFY `idContact_speciality` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `medical_insurance`
+--
+ALTER TABLE `medical_insurance`
+  MODIFY `idMedical_insurance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `patient`
+--
+ALTER TABLE `patient`
+  MODIFY `idPatient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `professional`
+--
+ALTER TABLE `professional`
+  MODIFY `idProfessional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de tabela `query`
+--
+ALTER TABLE `query`
+  MODIFY `idQuery` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
